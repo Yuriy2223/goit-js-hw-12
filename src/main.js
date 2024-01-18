@@ -5,8 +5,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'izitoast/dist/css/iziToast.min.css';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// 41830108-cae6afe398dec34048fd09339;process.env.API_KEY;
-const API_KEY = '41830108-cae6afe398dec34048fd09339';
+const API_KEY = 'process.env.API_KEY';
 
 const form = document.querySelector('#search-form');
 const gallery = document.querySelector('#gallery');
