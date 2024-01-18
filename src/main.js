@@ -6,10 +6,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 // 41830108-cae6afe398dec34048fd09339;process.env.API_KEY;
+const API_KEY = '41830108-cae6afe398dec34048fd09339';
 
-const API_KEY = process.env.API_KEY;
-
-process.env.API_KEY;
 const form = document.querySelector('#search-form');
 const gallery = document.querySelector('#gallery');
 const loader = document.querySelector('#loader');
@@ -69,6 +67,11 @@ async function fetchImages() {
     }
 
     page += 1;
+
+    const cardHeight = document
+      .querySelector('.gallery a')
+      .getBoundingClientRect().height;
+    window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
   } catch (error) {
     iziToast.error({
       title: 'Error',
