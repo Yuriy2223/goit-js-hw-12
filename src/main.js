@@ -5,7 +5,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'izitoast/dist/css/iziToast.min.css';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const API_KEY = 'process.env.API_KEY';
+const API_KEY = '41830108-cae6afe398dec34048fd09339';
 
 const form = document.querySelector('#search-form');
 const gallery = document.querySelector('#gallery');
@@ -30,8 +30,8 @@ form.addEventListener('submit', async event => {
 loadMoreButton.addEventListener('click', fetchImages);
 
 async function fetchImages() {
-  loader.classList.remove('hidden');
-  loadMoreButton.classList.add('hidden');
+  toggleVisibility(loader);
+  toggleVisibility(loadMoreButton);
 
   try {
     const response = await axios.get(
@@ -61,8 +61,9 @@ async function fetchImages() {
         title: 'Info',
         message: "We're sorry, but you've reached the end of search results.",
       });
+      toggleVisibility(loadMoreButton);
     } else {
-      loadMoreButton.classList.remove('hidden');
+      toggleVisibility(loadMoreButton);
     }
 
     page += 1;
@@ -74,9 +75,13 @@ async function fetchImages() {
   } catch (error) {
     iziToast.error({
       title: 'Error',
-      message: `An error occurred: ${error.message}`,
+      message: 'Something went wrong. Please try again later.',
     });
   } finally {
-    loader.classList.add('hidden');
+    toggleVisibility(loader);
   }
+}
+
+function toggleVisibility(element) {
+  element.classList.toggle('hidden');
 }
